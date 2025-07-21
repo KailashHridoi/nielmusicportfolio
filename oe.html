@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NIEL – Music Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      font-family: 'Segoe UI', sans-serif;
+      scroll-behavior: smooth;
+      color: white;
+    }
+
+    section {
+      width: 100%;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Welcome section */
+    .welcome {
+      background: url('media/1752820667883.jpg') no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      opacity: 0.9;
+      padding: 2rem;
+    }
+
+    .welcome h1 {
+      font-family: 'Silkscreen', sans-serif;
+      font-size: 10vw;
+      color: white;
+      text-shadow: 2px 2px 5px black;
+      letter-spacing: 1vw;
+    }
+
+    .welcome h2 {
+      font-family: 'Silkscreen', sans-serif;
+      font-size: 4vw;
+      color: rgb(0, 0, 0);
+      text-shadow: 2px 2px 5px rgb(95, 92, 92);
+      width: 100%;
+      text-align: center;
+    }
+
+    .welcome h3 {
+      font-family: 'Silkscreen', sans-serif;
+      font-size: 4vw;
+      color: white;
+      text-shadow: 2px 2px 5px black;
+    }
+
+    .welcome p {
+      margin-top: 10px;
+      font-size: 1.2rem;
+      color: #eee;
+    }
+
+    .music {
+      background: url('media/back.png') no-repeat ;
+      overflow: hidden;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      width: 100%;
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .left {
+      flex: 1 1 100%;
+      padding-right: 0;
+      margin-bottom: 2rem;
+    }
+
+    .left h2 {
+      font-weight: 300;
+      font-size: 1.2rem;
+      margin-bottom: 0;
+    }
+
+    .left h1 {
+      font-family: 'Silkscreen', sans-serif;
+      font-size: 8vw;
+      font-weight: 900;
+      letter-spacing: 50px;
+      margin: 0.5em 0;
+      border-right: 6px solid;
+      white-space: nowrap;
+      overflow: hidden;
+      animation:
+        typing 2s steps(5),
+        cursor 0.4s step-end infinite alternate;
+    }
+
+    @keyframes cursor {
+      50% { border-color: transparent; }
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+    }
+
+    .left p {
+      max-width: 500px;
+      line-height: 1.6;
+      font-size: 1rem;
+      color: #ccc;
+    }
+
+    .player {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .play-btn {
+      width: 40px;
+      height: 40px;
+      background: #41162d;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 15px;
+      cursor: pointer;
+    }
+
+    .play-btn::before {
+      content: '▶';
+      color: white;
+      font-size: 16px;
+      margin-left: 2px;
+    }
+
+    .playing .play-btn::before {
+      content: '❚❚';
+      margin-left: 0;
+    }
+
+    .song-info {
+      flex: 1;
+    }
+
+    .song-info span {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 6px;
+      color: #eee;
+    }
+
+    .progress-container {
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+      color: #999;
+    }
+
+    .progress-bar {
+      flex: 1;
+      height: 2px;
+      background-color: #444;
+      margin: 0 10px;
+      position: relative;
+    }
+
+    .progress {
+      height: 100%;
+      background-color: #fff;
+      width: 0%;
+    }
+
+    .buttons {
+      margin-top: 20px;
+    }
+
+    .buttons button {
+      padding: 10px 20px;
+      margin-right: 15px;
+      background-color: #a64c75;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .buttons button:hover {
+      background-color: #8c3a61;
+    }
+
+    .right {
+      flex: 1 1 100%;
+      text-align: center;
+    }
+
+    .right img {
+      width: 60vw;
+      max-width: 360px;
+      height: auto;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #333;
+    }
+
+    audio {
+      display: none;
+    }
+
+    /* Media Queries */
+    @media (min-width: 768px) {
+      .container {
+        flex-wrap: nowrap;
+      }
+
+      .left, .right {
+        flex: 1;
+        margin-bottom: 0;
+      }
+
+      .right img {
+        width: 360px;
+        height: 360px;
+      }
+
+      .left h1 {
+        font-size: 6rem;
+      }
+
+      .welcome h2, .welcome h3 {
+        font-size: 4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Section 1: Welcome -->
+  <section class="welcome">
+    <div>
+      <h2>The</h2>
+      <h1>OFFbEAT</h1>
+      <h3>STUDIO</h3>
+      <p>Scroll down to listen to some magic 🎵</p>
+    </div>
+  </section>
+
+  <!-- Section 2: Music -->
+  <section class="music">
+    <div class="container">
+      <div class="left">
+        <h2>Hi, this is</h2>
+        <h1 id="typewriter">NIEL</h1>
+        <p>
+          a music producer, songwriter, guitarist, and a very bad singer from Assam. The Off<span style="font-style: italic; font-weight: 500;">b</span>eat, is a dream project of mine where I will turn your dream of making your own song into a reality.
+        </p>
+
+        <div class="player" id="player">
+          <div class="play-btn" onclick="togglePlay()"></div>
+          <div class="song-info">
+            <span>The whisper by Niel</span>
+            <div class="progress-container">
+              <span id="current">00:00</span>
+              <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+              </div>
+              <span id="duration">00:00</span>
+            </div>
+          </div>
+          <audio id="audio" src="media/off time.mp3"></audio>
+        </div>
+
+        <div class="buttons">
+          <button>Let's Collaborate</button>
+          <button>My music</button>
+        </div>
+      </div>
+
+      <div class="right">
+        <img src="media/1752820747463.jpg" alt="Profile photo">
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const audio = document.getElementById('audio');
+    const playBtn = document.querySelector('.play-btn');
+    const progress = document.getElementById('progress');
+    const current = document.getElementById('current');
+    const duration = document.getElementById('duration');
+    const player = document.getElementById('player');
+
+    function togglePlay() {
+      if (audio.paused) {
+        audio.play();
+        player.classList.add('playing');
+      } else {
+        audio.pause();
+        player.classList.remove('playing');
+      }
+    }
+
+    function formatTime(sec) {
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60);
+      return `${m < 10 ? '0' + m : m}:${s < 10 ? '0' + s : s}`;
+    }
+
+    audio.addEventListener('loadedmetadata', () => {
+      duration.textContent = formatTime(audio.duration);
+    });
+
+    audio.addEventListener('timeupdate', () => {
+      const percent = (audio.currentTime / audio.duration) * 100;
+      progress.style.width = percent + '%';
+      current.textContent = formatTime(audio.currentTime);
+    });
+
+    audio.addEventListener('ended', () => {
+      player.classList.remove('playing');
+    });
+
+    // Play audio on any click
+    document.body.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        player.classList.add('playing');
+      }
+    }, { once: true }); // Only first click
+
+  </script>
+</body>
+</html>
